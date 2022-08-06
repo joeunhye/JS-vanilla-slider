@@ -28,6 +28,23 @@ nextBtn.addEventListener("click", () => {
 		});
 	} else {
 		currentSlide--;
-		console.log(currentSlide);
 	}
+});
+prevBtn.addEventListener("click", () => {
+	currentSlide--;
+	if (currentSlide > 0) {
+		//슬라이드 이동을 위한 offset 계산
+		const offset = slideWidth * (currentSlide - 1);
+		//각 슬라이드 아이템의 left에 offset 적용
+		slideItems.forEach(item => {
+			item.setAttribute("style", `left: ${-offset}px`);
+		});
+	} else {
+		currentSlide++;
+	}
+});
+
+//브라우저 화면 조정 시 slideWidth 다시 계산
+window.addEventListener("resize", () => {
+	slideWidth = slide.clientWidth;
 });

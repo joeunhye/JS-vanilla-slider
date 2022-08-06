@@ -34,7 +34,7 @@ body {
 	flex-shrink: 0;
 
 	/* transition */
-	transition: left 0.15s;
+	transition: left 1s;
 }
 .slide_button {
 	/* layout */
