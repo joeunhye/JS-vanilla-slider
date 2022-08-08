@@ -1,7 +1,6 @@
 //슬라이드 전체 크기 width 구하기
 const slide = document.querySelector(".slide");
 let slideWidth = slide.clientWidth;
-console.log(slideWidth);
 
 //버튼 엘리먼트
 const prevBtn = document.querySelector(".slide_prev_button");
@@ -19,6 +18,10 @@ let currentSlide = 0;
 //페이지네이션 생성
 const pageNav = document.querySelector('.slide_pagination');
 
+//드래그/스와이프 이벤트를 위한 변수 초기화
+let startPoint = 0;
+let endPoint = 0;
+
 for(let i = 0; i < maxSlide; i++) {
 	if(i === 0) {
 		// 첫번째 페이지네이션에 active 클래스 추가
@@ -30,8 +33,8 @@ for(let i = 0; i < maxSlide; i++) {
 
 const pageNavItems = document.querySelectorAll('.slide_pagination > li');
 
-//버튼 엘리먼트에 클릭 이벤트 추가
-nextBtn.addEventListener("click", () => {
+//다음 슬라이드 이동
+function nextMove() {
 	currentSlide++;
 	if (currentSlide < maxSlide) {
 		//슬라이드 이동을 위한 offset 계산
@@ -46,9 +49,10 @@ nextBtn.addEventListener("click", () => {
 	} else {
 		currentSlide--;
 	}
-});
+}
 
-prevBtn.addEventListener("click", () => {
+//이전 슬라이드 이동
+function prevMove() {
 	currentSlide--;
 	if (currentSlide >= 0) {
 		//슬라이드 이동을 위한 offset 계산
@@ -63,6 +67,15 @@ prevBtn.addEventListener("click", () => {
 	} else {
 		currentSlide++;
 	}
+}
+
+//버튼 엘리먼트에 클릭 이벤트 추가
+nextBtn.addEventListener("click", () => {
+	nextMove();
+});
+
+prevBtn.addEventListener("click", () => {
+	prevMove();
 });
 
 //페이지네이션 클릭 시 해당 슬라이드 이동
