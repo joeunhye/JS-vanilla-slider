@@ -16,6 +16,9 @@ body {
 
 	/* size */
 	width: 100%;
+
+	/* slide drag를 위해 DOM요소가 드래그로 선택되는것을 방지 */
+	user-select: none;
 }
 .slide_item {
 	/* layout */

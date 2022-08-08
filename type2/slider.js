@@ -18,10 +18,6 @@ let currentSlide = 0;
 //페이지네이션 생성
 const pageNav = document.querySelector('.slide_pagination');
 
-//드래그/스와이프 이벤트를 위한 변수 초기화
-let startPoint = 0;
-let endPoint = 0;
-
 for(let i = 0; i < maxSlide; i++) {
 	if(i === 0) {
 		// 첫번째 페이지네이션에 active 클래스 추가
@@ -94,6 +90,44 @@ for(let i = 1; i < maxSlide; i++) {
 		pageNavItems[currentSlide].classList.add('active');
 	})
 }
+
+//드래그/스와이프 이벤트를 위한 변수 초기화
+let startPoint = 0;
+let endPoint = 0;
+
+//드래그 이벤트(PC)
+slide.addEventListener('mousedown', e => {
+	//마우스 드래그 시작 위치 저장
+	startPoint = e.pageX; 
+});
+
+slide.addEventListener('mouseup', e => {
+	//마우스 드래그 끝 위치 저장
+	endPoint = e.pageX;
+	if(startPoint < endPoint) { //마우스가 오른쪽으로 드래그 된 경우
+		console.log('prev move');
+		prevMove();
+	}else if (startPoint > endPoint) { //마우스가 왼쪽으로 드래그 된 경우
+		console.log('next move');
+		nextMove();
+	}
+});
+
+//터치 이벤트(모바일)
+slide.addEventListener('touchstart', e => {
+	startPoint = e.touches[0].pageX;
+});
+
+slide.addEventListener('touchend', e => {
+	endPoint = e.changedTouches[0].pageX;
+	if(startPoint < endPoint) { //마우스가 오른쪽으로 드래그 된 경우
+		console.log('prev move');
+		prevMove();
+	}else if (startPoint > endPoint) { //마우스가 왼쪽으로 드래그 된 경우
+		console.log('next move');
+		nextMove();
+	}
+});
 
 //브라우저 화면 조정 시 slideWidth 다시 계산
 window.addEventListener("resize", () => {
