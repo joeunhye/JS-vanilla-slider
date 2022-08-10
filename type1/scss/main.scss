@@ -1,0 +1,34 @@
+
+.visual_wrap {margin: 0 auto 60px;}
+  .slide_list {position: relative;}
+  .slide_conts {float: left; position: relative;
+    img {width: 100%;}
+    p{position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 5em; font-weight: 500;}
+}
+
+  .btn_wrap {
+      position: absolute; width: 300px; left: 50%; top: 60%; transform: translateX(-50%); z-index: 20;
+      a{
+          position: absolute; top: 0;
+          color: #fff;
+          font-size: 2em;
+          &.prev {left: 0;}
+          &.pause, &.play {left: 50%; transform: translateX(-50%);}
+          &.pause{display: none;}
+          &.next {right: 0;}
+      }
+
+      
+  }
+  .dot_wrap {
+    position: absolute; left: 50%; top: 67%;
+    transform: translate(-50%, 110%);
+      ul {display: flex;
+        li{width: 6px; height: 6px; cursor: pointer;
+          border-radius: 100%; border: 1px solid #fff;
+          color: #fff; text-indent: -9999px;
+          &.on {background-color: #fff;}
+          & + li {margin-left: 10px;}
+        }
+    }
+  }
